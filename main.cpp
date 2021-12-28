@@ -1,3 +1,5 @@
+//Copyright [2021] [c3nt4ur1]
+
 #include <iostream>
 using namespace std;
 
