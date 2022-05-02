@@ -4,6 +4,9 @@
 
 #ifndef HYPERCALC_MODULES_H
 #define HYPERCALC_MODULES_H
+#include <iostream>
+#include <string>
+using namespace std;
 
 double first_deg_equation(string source);
 
