@@ -8,6 +8,6 @@
 #include <string>
 using namespace std;
 
-double first_deg_equation(string source);
+template<typename T> T first_deg_equation(string source);
 
 #endif //HYPERCALC_MODULES_H
