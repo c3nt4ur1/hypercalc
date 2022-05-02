@@ -4,7 +4,8 @@
 
 #include "modules.h"
 
-double first_deg_equation(string source){
+template<typename T>
+T first_deg_equation(string source){
     string side1;
     string side2;
 
@@ -25,8 +26,8 @@ double first_deg_equation(string source){
     /*
      * Equation in divided into two sides from this point
      */
-    double timesOfX = 0;
-    double numericalPart = 0;
+    T timesOfX = 0;
+    T numericalPart = 0;
 
     /*
      * Separates the multipliers of X and the numerical values for side1
@@ -61,6 +62,9 @@ double first_deg_equation(string source){
         }
     }
 
+    /*
+    * Separates the multipliers of X and the numerical values for side2
+    */
     for(int j = 0; side2[j]; j++){
         if(side2[j] == 'x' || side2[j] == 'X'){
             if(side2[j-1] == '-'){
@@ -72,7 +76,19 @@ double first_deg_equation(string source){
             }else if(side2[j-2] == '+'){
                 timesOfX -= side2[j-1];
             }
-            //Still need to sort the numerical part
+        }else if(isdigit(side2[j])){
+            if(side2[j-1] == '+'){
+                numericalPart--;
+            }else if(side2[j-2] == '+'){
+                numericalPart -= side2[j-1];
+            }else if(side2[j-1] == '-'){
+                numericalPart++;
+            }else if(side2[j-2] == '-'){
+                numericalPart += side2[j-1];
+            }
+        }else{
+            continue;
         }
     }
+    return numericalPart/timesOfX;
 }
