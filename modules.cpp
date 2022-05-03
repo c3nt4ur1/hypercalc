@@ -4,91 +4,36 @@
 
 #include "modules.h"
 
-template<typename T>
-T first_deg_equation(string source){
+float first_deg_equation(string source) {
     string side1;
     string side2;
 
     int i = 0;
-    int* pI = &i;
+
     /*
      * Breaks the equation into two sides
      */
-    for(; source[i] != '='; *pI++){
+    for (; source[i] != 0x3d; i++) { //0x3d is the = sign
         side1 += source[i];
     }
 
     i++; //Skips the equals sign
 
-    for(; source[i]; *pI++){
+    for (; source[i]; i++) {
         side2 += source[i];
     }
     /*
-     * Equation in divided into two sides from this point
+     * Equation in divided into two sides from this point -> THIS FIRST PART IS WORKING PROPERLY
      */
-    T timesOfX = 0;
-    T numericalPart = 0;
+    float timesOfX = 0;
+    float numericalPart = 0;
 
     /*
      * Separates the multipliers of X and the numerical values for side1
      */
 
-    for(int j = 0; side1[j]; j++){
-        if(side1[j] == 'x' || side1[j] == 'X'){
-            if(side1[j-1] == '-' ){
-                timesOfX --;
-            }else if(side1[j-2] == '-'){
-                timesOfX -= side1[j-1];
-            }else if(side1[j-1] == '+'){
-                timesOfX++;
-            }else if(side1[j-2] == '+'){
-                timesOfX += side1[j-1];
-            }
-        }else if(isdigit(side1[j])){
-            int h = 0;
-            for(; isdigit(side1[j-h]); h++);
-            string szNum;
-            int g = h;
-            for(; h; h--){
-                szNum += side1[j-h];
-            }
-            if(side1[j-g-1] == '+') {
-                numericalPart -= stoi(szNum);
-            }else if(side1[j-g-1] == '-'){
-                numericalPart += stoi(szNum);
-            }
-        }else{
-            continue;
-        }
-    }
 
     /*
-    * Separates the multipliers of X and the numerical values for side2
-    */
-    for(int j = 0; side2[j]; j++){
-        if(side2[j] == 'x' || side2[j] == 'X'){
-            if(side2[j-1] == '-'){
-                timesOfX ++;
-            }else if(side2[j-1] == '+'){
-                timesOfX --;
-            }else if(side2[j-2] == '-'){
-                timesOfX += side2[j-1];
-            }else if(side2[j-2] == '+'){
-                timesOfX -= side2[j-1];
-            }
-        }else if(isdigit(side2[j])){
-            if(side2[j-1] == '+'){
-                numericalPart--;
-            }else if(side2[j-2] == '+'){
-                numericalPart -= side2[j-1];
-            }else if(side2[j-1] == '-'){
-                numericalPart++;
-            }else if(side2[j-2] == '-'){
-                numericalPart += side2[j-1];
-            }
-        }else{
-            continue;
-        }
-    }
-    return numericalPart/timesOfX;
+     * Redo all this part. It was only prepared to receive coefficients [-9;9]
+     */
 }
