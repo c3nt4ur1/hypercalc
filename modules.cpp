@@ -4,8 +4,7 @@
 
 #include "modules.h"
 
-template<typename T>
-T first_deg_equation(string source){
+float first_deg_equation(string source){
     string side1;
     string side2;
 
@@ -26,8 +25,8 @@ T first_deg_equation(string source){
     /*
      * Equation in divided into two sides from this point
      */
-    T timesOfX = 0;
-    T numericalPart = 0;
+    float timesOfX = 0;
+    float numericalPart = 0;
 
     /*
      * Separates the multipliers of X and the numerical values for side1
